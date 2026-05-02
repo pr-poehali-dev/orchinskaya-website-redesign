@@ -3,6 +3,40 @@ import Icon from "@/components/ui/icon";
 
 const PHOTO_VERONIKA = "https://cdn.poehali.dev/projects/4b051116-c141-40e2-bc3e-184f795880c9/files/d91ae4ac-e6eb-4675-b144-d061c9ffe4e3.jpg";
 const PHOTO_OFFICE = "https://cdn.poehali.dev/projects/4b051116-c141-40e2-bc3e-184f795880c9/files/71ce6340-fee9-49dc-9667-e897cc481dcd.jpg";
+const PHOTO_DIPLOMA = "https://cdn.poehali.dev/projects/4b051116-c141-40e2-bc3e-184f795880c9/files/46bc155d-8569-4e2d-8c06-5d3bc664b224.jpg";
+
+const diplomas = [
+  {
+    year: "2016",
+    title: "МГУ им. Ломоносова",
+    subtitle: "Клиническая психология",
+    type: "Диплом специалиста",
+  },
+  {
+    year: "2019",
+    title: "Институт практической психологии",
+    subtitle: "Когнитивно-поведенческая терапия",
+    type: "Сертификат",
+  },
+  {
+    year: "2021",
+    title: "ОППЛ — супервизия",
+    subtitle: "Индивидуальная и групповая супервизия",
+    type: "Удостоверение",
+  },
+  {
+    year: "2022",
+    title: "Нарративные практики",
+    subtitle: "Нарративный подход в терапии",
+    type: "Сертификат",
+  },
+  {
+    year: "2023",
+    title: "Христианская психология",
+    subtitle: "Интеграция духовного и психологического",
+    type: "Сертификат",
+  },
+];
 
 const services = [
   {
@@ -402,6 +436,115 @@ function AboutSection() {
   );
 }
 
+function DiplomasSection() {
+  return (
+    <section id="diplomas" className="py-28 px-6" style={{ background: "var(--cream)" }}>
+      <div className="max-w-5xl mx-auto">
+        <div className="section-reveal mb-16">
+          <p className="text-sm tracking-widest uppercase mb-3 font-medium" style={{ color: "var(--sage)" }}>
+            Образование
+          </p>
+          <h2
+            className="font-cormorant font-light"
+            style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", color: "var(--text-dark)" }}
+          >
+            Дипломы и сертификаты
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-10 items-start">
+          {/* Diploma image */}
+          <div className="reveal-left sticky top-28">
+            <div className="relative">
+              <div
+                className="absolute -inset-3 rounded-3xl"
+                style={{ background: "var(--sage-light)", opacity: 0.4 }}
+              />
+              <img
+                src={PHOTO_DIPLOMA}
+                alt="Диплом"
+                className="relative rounded-3xl w-full object-cover shadow-lg"
+                style={{ aspectRatio: "4/3" }}
+              />
+              <div
+                className="absolute -bottom-4 -right-4 px-5 py-3 rounded-2xl"
+                style={{ background: "white", border: "1px solid var(--cream-dark)", boxShadow: "0 8px 24px rgba(139,110,82,0.1)" }}
+              >
+                <div className="flex items-center gap-2">
+                  <Icon name="ShieldCheck" size={16} className="shrink-0" style={{ color: "var(--sage)" }} />
+                  <span className="text-sm font-medium" style={{ color: "var(--text-dark)" }}>
+                    5 документов об образовании
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Timeline */}
+          <div className="relative">
+            <div
+              className="absolute left-[19px] top-3 bottom-3 w-px"
+              style={{ background: "linear-gradient(to bottom, var(--sage-light), transparent)" }}
+            />
+            <div className="space-y-6">
+              {diplomas.map((d, i) => (
+                <div
+                  key={d.title}
+                  className="section-reveal flex gap-5 group"
+                  style={{ transitionDelay: `${i * 0.1}s` }}
+                >
+                  {/* Dot */}
+                  <div className="relative shrink-0 mt-1">
+                    <div
+                      className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                      style={{
+                        background: "white",
+                        border: "2px solid var(--sage-light)",
+                        color: "var(--sage)",
+                      }}
+                    >
+                      <Icon name="Award" size={14} fallback="Star" />
+                    </div>
+                  </div>
+
+                  {/* Card */}
+                  <div
+                    className="flex-1 p-5 rounded-2xl transition-all duration-300 group-hover:-translate-y-1"
+                    style={{
+                      background: "white",
+                      border: "1px solid var(--cream-dark)",
+                      boxShadow: "0 2px 8px rgba(139,110,82,0.04)",
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 12px 30px rgba(139,110,82,0.1)"; e.currentTarget.style.borderColor = "var(--sage-light)"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "0 2px 8px rgba(139,110,82,0.04)"; e.currentTarget.style.borderColor = "var(--cream-dark)"; }}
+                  >
+                    <div className="flex items-start justify-between gap-3 mb-1">
+                      <span className="font-cormorant font-semibold text-lg leading-tight" style={{ color: "var(--text-dark)" }}>
+                        {d.title}
+                      </span>
+                      <span
+                        className="shrink-0 text-xs px-2.5 py-1 rounded-full font-medium mt-0.5"
+                        style={{ background: "var(--cream)", color: "var(--text-mid)" }}
+                      >
+                        {d.year}
+                      </span>
+                    </div>
+                    <p className="text-sm" style={{ color: "var(--text-mid)" }}>{d.subtitle}</p>
+                    <div className="flex items-center gap-1.5 mt-2">
+                      <Icon name="FileCheck" size={12} />
+                      <span className="text-xs" style={{ color: "var(--text-light)" }}>{d.type}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ThemesSection() {
   return (
     <section className="py-20 px-6" style={{ background: "var(--cream)" }}>
@@ -727,6 +870,7 @@ export default function Index() {
       <NavBar />
       <HeroSection />
       <AboutSection />
+      <DiplomasSection />
       <ThemesSection />
       <ServicesSection />
       <TestimonialsSection />
