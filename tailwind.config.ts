@@ -19,7 +19,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				syne: ['Syne', 'sans-serif'],
+				cormorant: ['Cormorant', 'serif'],
 				onest: ['Onest', 'sans-serif'],
 			},
 			colors: {
